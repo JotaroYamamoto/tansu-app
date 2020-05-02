@@ -1,19 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+import React from "react";
+import { StyleSheet, View, FlatList, SafeAreaView } from "react-native";
+import ItemList from "./components/ItemList";
+import tanses from "./dummies/tanses";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    justifyContent: "center",
   },
 });
+
+export default function App() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={tanses}
+        renderItem={({ item }) => (
+          <ItemList image={item.image} tansuName={item.tansuName} />
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </SafeAreaView>
+  );
+}
